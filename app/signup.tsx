@@ -1,11 +1,12 @@
-import { View, TextInput, Text, Linking, Pressable, Button } from "react-native";
+import { View, TextField, TextInput, Text, Linking, Pressable, Button } from "react-native";
 import { Heading } from "../components/ui/heading";
 import { router } from "expo-router";
-import LoginStyles from "../styles/loginStyles.ts"
-import { useState } from "react"
-import { useAuth, handleLogIn } from "../service/firebaseAuth.ts";
+import React, { useState } from "react";
+import LoginStyles from "../styles/loginStyles.ts";
+import { handleSignUp } from "../service/firebaseAuth.ts";
+import { useAuth } from "../service/firebaseAuth.ts"
 
-export default function Login() {
+export default function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -15,7 +16,7 @@ export default function Login() {
 
     return (
         <View style={LoginStyles.container}>
-            <Heading style={LoginStyles.title}>Login</Heading>
+            <Heading style={LoginStyles.title}>Sign Up</Heading>
             <TextInput
                 placeholder="Email"
                 value={email}
@@ -33,16 +34,15 @@ export default function Login() {
             />
             <Pressable
                 style={LoginStyles.button}
-                onPress={handleLogIn(email, password, setPassword)}
+                onPress={handleSignUp(email, password, setPassword)}
             >
-                <Text style={LoginStyles.buttonText}>Log in</Text>
+                <Text style={LoginStyles.buttonText}>Sign up</Text>
             </Pressable>
             <Pressable
-                onPress={() => router.push("/signup")}
+                onPress={() => router.push("/login")}
             >
-                <Text>Don't have an account? Sign up</Text>
+                <Text>Already have an account? Log in</Text>
             </Pressable>
-            {/*<Text onPress={() => router.push("/forgotpass")}>Forgot password</Text>*/}
         </View>
     );
 }
