@@ -16,7 +16,7 @@ export default function Index() {
           style={{
               flex: 1,
               justifyContent: "center",
-              alignItems: "center"
+              alignItems: "center",
       }}
       >
           <Pressable
@@ -28,7 +28,7 @@ export default function Index() {
                   borderRadius: 20,
                   backgroundColor: "#0081ff",
                   justifyContent: "center",
-                  alignItems: "center"
+                  alignItems: "center",
           }}
           >
             <Text style={{ fontSize: 45, color: "white", fontFamily: "SigmarOne-Regular" }}>Get Started!</Text>

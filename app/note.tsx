@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { loadNote, saveNote } from "../services/noteStorage"
 import { useState, useEffect } from "react";
 import { View, TextInput, StatusBar } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -7,34 +7,21 @@ export default function NoteScreen() {
     const [text, setText] = useState("");
 
     useEffect(() => {
-        const loadNote = async () => {
-            try {
-                const saved = await AsyncStorage.getItem("note")
-                if (saved !== null) {
-                    setText(saved);
-                }
-            } catch (e) {
-                console.error("Failed to load note", e);
+        (async () => {
+            const saved = await loadNote();
+            if (saved !== null) {
+                setText(saved);
             }
-        }
-
-        loadNote()
+        })()
     }, []);
 
     useEffect(() => {
-        const saveNote = async () => {
-            try {
-                await AsyncStorage.setItem("note", text);
-            } catch (e) {
-                console.error("Failed to save note", e)
-            }
-        }
-
-        saveNote()
+        saveNote(text)
     }, [text]);
+    
     return (
         <SafeAreaProvider>
-            <StatusBar barStyle="dark-content" backgroundColor="#000000" />
+            <StatusBar barStyle="dark-content" />
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
                     <TextInput
