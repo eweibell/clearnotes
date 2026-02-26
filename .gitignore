@@ -41,4 +41,12 @@ app-example
 # generated native folders
 /ios
 /android
+
+# IDE
+.idea/
+.vscode/
+.cursor/
+
+
+# Firebase API keys
 .env

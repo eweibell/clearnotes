@@ -5,36 +5,54 @@ export const LoginStyles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        paddingHorizontal: "3vh",
-        paddingBottom: "15vh",
     },
     title: {
-        fontSize: "5vh",
-        lineHeight: "7.5vh",
+        fontSize: 60,
+        lineHeight: 80,
         fontWeight: "bold",
-        marginBottom: "5vh",
+        marginBottom: 20,
     },
     input: {
-        width: "70vw",
-        marginBottom: "1.5vh",
-        padding: "0.5vh",
-        borderWidth: "1.5px",
+        color: "black",
+        width: 280,
+        marginBottom: 10,
+        padding: 8,
+        borderWidth: 1.5,
         borderColor: "black",
         borderStyle: "solid",
-        borderRadius: "2.5px"
+        borderRadius: 2.5
     },
     button: {
-        width: "70vw",
-        marginBottom: "1.5vh",
+        width: 280,
+        marginBottom: 10,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: "0.5vh",
-        borderWidth: "1.5px",
+        padding: 8,
+        borderWidth: 1.5,
         borderColor: "black",
         borderStyle: "solid",
-        borderRadius: "2.5px"
+        borderRadius: 2.5
 
+    },
+    placeholder: {
+        paddingVertical: "3vh"
+    },
+    buttonText: {
+        color: "black",
+        fontWeight: "bold",
+    },
+    returnImage: {
+        height: 30,
+        width: 30,
+    },
+    returnButton: {
+        position: "absolute",
+        top: 60,
+        left: 25,
+        height: "min-content",
+        width: "min-content",
+        padding: 3,
     }
 });
 

@@ -1,4 +1,4 @@
-import { View, TextField, TextInput, Text, Linking, Pressable, Button } from "react-native";
+import { View, TextField, TextInput, Text, Linking, Pressable, Button, Image } from "react-native";
 import { Heading } from "../components/ui/heading";
 import { router } from "expo-router";
 import React, { useState } from "react";
@@ -16,6 +16,15 @@ export default function Signup() {
 
     return (
         <View style={LoginStyles.container}>
+            <Pressable
+                style={LoginStyles.returnButton}
+                onPress={() => router.push("/")}
+            >
+                <Image
+                    source={require("../assets/arrow_back.png")}
+                    style={LoginStyles.returnImage}
+                />
+            </Pressable>
             <Heading style={LoginStyles.title}>Sign Up</Heading>
             <TextInput
                 placeholder="Email"
@@ -24,6 +33,7 @@ export default function Signup() {
                 style={LoginStyles.input}
                 autoCapitalize="none"
                 keyboardType="email-address"
+                placeholderTextColor="grey"
             />
             <TextInput
                 placeholder="Password"
@@ -31,10 +41,11 @@ export default function Signup() {
                 onChangeText={setPassword}
                 style={LoginStyles.input}
                 secureTextEntry
+                placeholderTextColor="grey"
             />
             <Pressable
                 style={LoginStyles.button}
-                onPress={handleSignUp(email, password, setPassword)}
+                onPress={() => handleSignUp(email, password, setPassword)}
             >
                 <Text style={LoginStyles.buttonText}>Sign up</Text>
             </Pressable>

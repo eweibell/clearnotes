@@ -1,13 +1,19 @@
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    signOut
+    signOut,
+    signInWithCredential,
+    GoogleAuthProvider
 } from "firebase/auth";
 import { auth } from "./firebaseService"
 import { Alert } from "react-native"
 import { router } from "expo-router";
-import { useEffect, useState } from "react"
-import { onAuthStateChanged } from "firebase/auth"
+import * as Google from "expo-auth-session/providers/google";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import Constants from "expo-constants";
+
+const providerGoogle = new GoogleAuthProvider();
 
 export const useAuth = () => {
     const [user, setUser] = useState(undefined);
@@ -76,6 +82,49 @@ export const handleLogIn = async (email, password, setLoading) => {
     } finally {
         setLoading(false);
     }
+}
+
+export const useGoogleSignIn = () => {
+    const redirectUri = "com.evenweibell.clearnotes:/oauthredirect";
+    const androidClientId = __DEV__
+        ? Constants.expoConfig?.extra?.GOOGLE_ANDROID_CLIENT_ID_DEBUG
+        : Constants.expoConfig?.extra?.GOOGLE_ANDROID_CLIENT_ID_RELEASE;
+    if (!androidClientId) {
+        Alert.alert(
+            "Google Login Error",
+            "Missing Google Android client ID. Check your .env values and rebuild the app."
+        );
+    }
+    const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
+        webClientId: "130009110-6sdbn2d5mr17svcrauiiv7qk7aihkdat.apps.googleusercontent.com",
+        androidClientId,
+        redirectUri,
+        useProxy: false,
+        scopes: ["profile", "email"],
+    })
+    console.log(redirectUri)
+    console.log("Android Client ID: " + androidClientId)
+
+    console.log(request?.url);
+    console.log(response?.type, response?.error);
+
+    useEffect(() => {
+        if (!response) return
+
+        if (response.type === "success") {
+            const idToken = response.authentication?.idToken ?? response.params?.id_token
+            if (!idToken) {
+                Alert.alert("Google Login Error", "No ID token returned")
+                return
+            }
+            const credential = GoogleAuthProvider.credential(idToken)
+            signInWithCredential(auth, credential)
+                .then(() => router.replace("/home"))
+                .catch(err => Alert.alert("Firebase Login Error", err.message))
+        }
+    }, [response])
+
+    return { promptAsync, request }
 }
 
 export const handleSignOut = async () => {
