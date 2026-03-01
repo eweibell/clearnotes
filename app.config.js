@@ -10,5 +10,6 @@ export default ({ config }) => ({
     FIREBASE_APP_ID: process.env.APP_ID,
     GOOGLE_ANDROID_CLIENT_ID_DEBUG: process.env.GOOGLE_ANDROID_CLIENT_ID_DEBUG,
     GOOGLE_ANDROID_CLIENT_ID_RELEASE: process.env.GOOGLE_ANDROID_CLIENT_ID_RELEASE,
+    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
   },
 });
