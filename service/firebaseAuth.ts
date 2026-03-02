@@ -145,7 +145,6 @@ export const useGoogleSignIn = () => {
         useProxy: false,
         scopes: ["profile", "email"],
     })
-
     useEffect(() => {
         if (!response) return
 
