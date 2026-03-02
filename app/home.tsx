@@ -1,5 +1,4 @@
 import { Text, View, Image, Pressable } from "react-native";
-import { router } from "expo-router";
 import LoginStyles from "../styles/loginStyles.ts";
 import {handleSignOut} from "../service/firebaseAuth.ts";
 
