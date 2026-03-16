@@ -20,7 +20,7 @@ export default function Index() {
       }}
       >
           <Pressable
-              onPress={() => router.push("/login")}
+              onPress={() => router.push("/note")}
               style={{
                   width: 300,
                   height: 100,
