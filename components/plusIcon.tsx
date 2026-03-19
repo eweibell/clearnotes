@@ -1,6 +1,6 @@
 import { IconButton } from 'react-native-paper';
 
-const PlusIcon = () => (
+const PlusButton = () => (
   <IconButton
     icon="plus"
     iconColor={"black"}
@@ -9,4 +9,4 @@ const PlusIcon = () => (
   />
 );
 
-export default PlusIcon
+export default PlusButton
