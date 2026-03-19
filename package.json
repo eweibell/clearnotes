@@ -31,6 +31,11 @@
     "react-dom": "19.1.0",
     "react-native": "0.81.5",
     "react-native-gesture-handler": "~2.28.0",
+<<<<<<< HEAD
+=======
+    "react-native-keyboard-controller": "^1.20.7",
+    "react-native-paper": "^5.15.0",
+>>>>>>> 8a1bf52 (feat: add addNote component with IconButton and update dependencies)
     "react-native-reanimated": "~4.1.1",
     "react-native-safe-area-context": "~5.6.0",
     "react-native-screens": "~4.16.0",
