@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import IconButton from './components/plusIcon'
+import IconButton from '../components/plusIcon'
 
 export default function addNote() {
     return (
