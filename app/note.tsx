@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import {
   Alert,
   Keyboard,
@@ -115,8 +115,32 @@ export default function NoteEditorScreen() {
     router.back();
   };
 
-  const handleSave = () => {
+  useEffect(() => {
+    const restoreNote = async () => {
+      const savedNote = await loadNote();
+      if (!savedNote) return;
+
+      const parsed = JSON.parse(savedNote);
+      setTitle(parsed.title ?? "");
+      setHtmlContent(parsed.htmlContent);
+      setPlainTextContent(parsed.plainTextContent);
+      editorRef.current?.setValue(parsed.htmlContent ?? "");
+    };
+
+    restoreNote();
+  }, []);
+
+  const handleSave = async () => {
     Keyboard.dismiss();
+
+    await saveNote(
+      JSON.stringify({
+        title,
+        htmlContent,
+        plainTextContent
+      })
+    )
+
     Alert.alert(
       "Note saved",
       `${title.trim() || "Untitled"}\n${plainTextContent.trim().length} characters`
