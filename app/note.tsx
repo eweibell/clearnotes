@@ -18,13 +18,8 @@ import {
   type EnrichedTextInputInstance,
   type OnChangeStateEvent,
 } from "react-native-enriched";
-
-type ToolbarButtonProps = {
-  active?: boolean;
-  disabled?: boolean;
-  label: string;
-  onPress: () => void;
-};
+import ToolbarButton from "@/components/toolBarButton";
+import { loadNote, saveNote } from "@/services/noteStorage";
 
 type ToolbarItem = {
   key: keyof Pick<
@@ -44,37 +39,6 @@ type ToolbarItem = {
   label: string;
   onPress: () => void;
 };
-
-function ToolbarButton({
-  active = false,
-  disabled = false,
-  label,
-  onPress,
-}: ToolbarButtonProps) {
-  return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityState={{ disabled, selected: active }}
-      disabled={disabled}
-      onPress={onPress}
-      style={[
-        styles.toolbarButton,
-        active && styles.toolbarButtonActive,
-        disabled && styles.toolbarButtonDisabled,
-      ]}
-    >
-      <Text
-        style={[
-          styles.toolbarButtonText,
-          active && styles.toolbarButtonTextActive,
-          disabled && styles.toolbarButtonTextDisabled,
-        ]}
-      >
-        {label}
-      </Text>
-    </Pressable>
-  );
-}
 
 export default function NoteEditorScreen() {
   const router = useRouter();
@@ -377,32 +341,6 @@ const styles = StyleSheet.create({
   toolbarContent: {
     paddingHorizontal: 16,
     gap: 10,
-  },
-  toolbarButton: {
-    minWidth: 48,
-    height: 40,
-    paddingHorizontal: 14,
-    borderRadius: 12,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#e2e8f0",
-  },
-  toolbarButtonActive: {
-    backgroundColor: "#0f172a",
-  },
-  toolbarButtonDisabled: {
-    backgroundColor: "#eef2f7",
-  },
-  toolbarButtonText: {
-    color: "#0f172a",
-    fontSize: 14,
-    fontWeight: "700",
-  },
-  toolbarButtonTextActive: {
-    color: "#f8fafc",
-  },
-  toolbarButtonTextDisabled: {
-    color: "#94a3b8",
   },
   footerMeta: {
     flexDirection: "row",
