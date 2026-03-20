@@ -1,10 +1,19 @@
 import { Stack } from "expo-router";
-import { KeyboardProvider } from "react-native-keyboard-controller";
+import * as WebBrowser from "expo-web-browser";
+import { LogBox } from "react-native";
+
+import '@/global.css';
+
+WebBrowser.maybeCompleteAuthSession();
+if (__DEV__) {
+  LogBox.ignoreLogs([
+    "SafeAreaView has been deprecated and will be removed in a future release",
+  ]);
+}
 
 export default function RootLayout() {
   return (
-    <KeyboardProvider>
-      <Stack screenOptions={{ headerShown: false }}/>
-    </KeyboardProvider>
+  <Stack screenOptions={{ headerShown: false }}/>
   )
 }
+ 

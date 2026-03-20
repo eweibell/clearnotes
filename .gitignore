@@ -42,5 +42,11 @@ app-example
 /ios
 /android
 
-.idea
-.vscode
+# IDE
+.idea/
+.vscode/
+.cursor/
+
+
+# Firebase API keys
+.env
