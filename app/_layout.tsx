@@ -2,7 +2,6 @@ import { Stack } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import { LogBox } from "react-native";
 
-import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
 import '@/global.css';
 
 WebBrowser.maybeCompleteAuthSession();
@@ -14,6 +13,7 @@ if (__DEV__) {
 
 export default function RootLayout() {
   return (
-      <Stack screenOptions={{ headerShown: false }}/>
+  <Stack screenOptions={{ headerShown: false }}/>
   )
 }
+ 
