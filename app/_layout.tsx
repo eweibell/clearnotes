@@ -2,8 +2,6 @@ import { Stack } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import { LogBox } from "react-native";
 
-import '@/global.css';
-
 WebBrowser.maybeCompleteAuthSession();
 if (__DEV__) {
   LogBox.ignoreLogs([
@@ -13,7 +11,7 @@ if (__DEV__) {
 
 export default function RootLayout() {
   return (
-  <Stack screenOptions={{ headerShown: false }}/>
+    <Stack screenOptions={{ headerShown: false }} />
   )
 }
- 
+
